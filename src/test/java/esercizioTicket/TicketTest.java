@@ -48,21 +48,21 @@ class TicketTest {
     @DisplayName("Test metodo calcolo prezzo - età < 18 ")
     void getFullPriceYoung() {
         Ticket ticket = new Ticket(100,6); //creo il biglietto
-        assertEquals(new BigDecimal(16.795).setScale(2,  RoundingMode.CEILING), ticket.getFullPrice()); //devo settare una scala se no i decimali mi sballano il risultato
+        assertEquals(new BigDecimal("16.80"), ticket.getFullPrice());
     }
 
     @Test
     @DisplayName("Test metodo calcolo prezzo - età > 65 ")
     void getFullPriceOld() {
         Ticket ticket = new Ticket(100,80); //creo il biglietto
-        assertEquals(new BigDecimal(12.595).setScale(2,  RoundingMode.CEILING), ticket.getFullPrice()); //devo settare una scala se no i decimali mi sballano il risultato
+        assertEquals(new BigDecimal("12.60"), ticket.getFullPrice());
     }
 
     @Test
     @DisplayName("Test metodo calcolo prezzo - età > 18 e < 65 ")
     void getFullPrice() {
         Ticket ticket = new Ticket(100,30); //creo il biglietto
-        assertEquals(new BigDecimal(21.00).setScale(2,  RoundingMode.CEILING), ticket.getFullPrice()); //devo settare una scala se no i decimali mi sballano il risultato
+        assertEquals(new BigDecimal("21.00"), ticket.getFullPrice());
     }
 
 

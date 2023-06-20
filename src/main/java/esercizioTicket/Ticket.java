@@ -34,10 +34,15 @@ public class Ticket {
         //calcolo il prezzo
         BigDecimal fullPrice = new BigDecimal(km).multiply(UNIT_PRICE).setScale(2,  RoundingMode.CEILING);
         //applico eventuali sconti
-        if(age < 18){ fullPrice = fullPrice.subtract(fullPrice.multiply(YOUNG_DISC)).setScale(2,  RoundingMode.CEILING); }
-        if(age > 65) { fullPrice = fullPrice.subtract(fullPrice.multiply(OLD_DISC)).setScale(2,  RoundingMode.CEILING); }
+        if(age < 18){ fullPrice = scalePrice(fullPrice.subtract(fullPrice.multiply(YOUNG_DISC))); }
+        if(age > 65) { fullPrice = scalePrice(fullPrice.subtract(fullPrice.multiply(OLD_DISC))); }
         //ritorno il prezzo
         return fullPrice;
+    }
+
+    //utility
+    private BigDecimal scalePrice(BigDecimal price) {
+        return price.setScale(2,  RoundingMode.CEILING);
     }
 
     //validatori
